@@ -1,14 +1,14 @@
 import java.util.*;
+import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-class Nn  {
+public class Nn implements ActionListener {
   JFrame f;
   JLabel l,l1,l2,l3;
   JTextField t;
   GridLayout g;
   JComboBox c,c1;
-
   JPanel p,p1;
   JRadioButton r1,r2,r3;
   ButtonGroup bg;
@@ -48,11 +48,46 @@ class Nn  {
     p.add(c1);
     p.add(b1);
     p.add(b2);
+    b1.addActionListener(this);
+    b2.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        f.dispose();//closes at button click
+      }
+    });
     f.setContentPane(p);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
   }
-  public static void main(String[] args) throws Exception{
+  public static void main(String[] args){
     new Nn();
+  }
+  public void actionPerformed(ActionEvent e) { //cannot take throws gives exception abstract not implemented
+    String s0 = l.getText();
+    String s= t.getText();
+    String s1 = l1.getText();
+    JRadioButton select = null;// for JRadioButton diffrent file input method
+    if(r1.isSelected())
+      select = r1;
+    else if (r2.isSelected())
+      select=r2;
+    else if (r3.isSelected())
+      select= r3;
+    String s2 =select.getText();
+    String s3 = l2.getText();
+    String s4 = c.getSelectedItem().toString();// for JComboBox file input method different or rather reading process is different.
+    String s5 = l3.getText();
+    String s6 = c1.getSelectedItem().toString();//Jcombobox READING process
+    try{
+  DataOutputStream dos = new DataOutputStream(new FileOutputStream("D:\\ABC.txt"));
+    dos.writeUTF(s0);
+    dos.writeUTF(s);
+    dos.writeUTF(s1);
+    dos.writeUTF(s2);
+    dos.writeUTF(s3);
+    dos.writeUTF(s4);
+    dos.writeUTF(s5);
+    dos.writeUTF(s6);
+    dos.close();
+  }catch(Exception e1){System.out.println(e1);}
   }
 }
