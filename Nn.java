@@ -35,8 +35,8 @@ class Login implements ActionListener{
        String password=pa1.getText();
        if(name.equals("Nischal") && password.equals("9860") )
         {
-          f1.dispose();
-          Nn fff = new Nn();
+          f1.dispose();//to dispose unused jframe
+          Nn fff = new Nn();//calling out anoother jframe if correct 
         }
         else {
           JOptionPane.showMessageDialog(null,"INVALID");
