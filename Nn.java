@@ -3,6 +3,54 @@ import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+class Login implements ActionListener{
+ JFrame f1;
+ JButton b14,b15;
+ JLabel l11,l21;
+ JTextField t11;
+ JPasswordField pa1;
+ GridLayout gd;
+ JPanel p11;
+ public Login(){
+   f1= new JFrame("ACCESS_POINT");
+   b14=new JButton("Login");
+   b15=new JButton("Cancel");
+   l11= new JLabel("User name");
+   l21= new JLabel("Password");
+   gd = new GridLayout(3,2);
+   t11 = new JTextField();
+   pa1 =new JPasswordField();
+   f1.setSize(500,500);
+   p11 = new JPanel(gd);
+   p11.add(l11);
+   p11.add(t11);
+   p11.add(l21);
+   p11.add(pa1);
+   p11.add(b14);
+   p11.add(b15);
+   b15.addActionListener(this);
+   b14.addActionListener(new ActionListener(){
+     public void actionPerformed(ActionEvent e11){
+       String name = t11.getText();
+       String password=pa1.getText();
+       if(name.equals("Nischal") && password.equals("9860") )
+        {
+          f1.dispose();
+          Nn fff = new Nn();
+        }
+        else {
+          JOptionPane.showMessageDialog(null,"INVALID");
+        }
+     }
+   });
+   f1.setContentPane(p11);
+   f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   f1.setVisible(true);
+ }
+ public void actionPerformed(ActionEvent e44){
+   f1.dispose();
+ }
+}
 public class Nn implements ActionListener {
   JFrame f;
   JLabel l,l1,l2,l3;
@@ -59,7 +107,7 @@ public class Nn implements ActionListener {
     f.setVisible(true);
   }
   public static void main(String[] args){
-    new Nn();
+    new Login();
   }
   public void actionPerformed(ActionEvent e) { //cannot take throws gives exception abstract not implemented
     String s0 = l.getText();
